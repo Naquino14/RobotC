@@ -20,7 +20,33 @@ task main()
 	*/
 
 	//9) starting with motors
-	setMotor(rightMotor, 64);		//start motor at 1/2 speed
-	wait(5); 										//run motor for 5 seconds
-	stopMotor(rightMotor);			//stop motor
+	/*
+	setMotor(rightMotor, 64);		//start motors at 1/2 speed
+	setMotor(leftMotor, 64);
+	wait(5); 										//run motors for 5 seconds
+	stopMotor(rightMotor);			//stop
+	stopMotor(leftMotor);
+
+	setMotor(rightMotor, -64);		//start motors at -1/2 speed
+	setMotor(leftMotor, -64);
+	wait(5); 										//run motors for 5 seconds
+	stopMotor(rightMotor);			//stop
+	stopMotor(leftMotor);
+	*/
+
+	//15)
+	setMotor(rightMotor, 64);
+	wait(5);
+	stopMotor(rightMotor);
+	setMotor(leftMotor, -96);
+	wait(2.5);
+	stopMotor(leftMotor);
+	setMotor(rightMotor, 127);
+	setMotor(leftMotor, 127);
+	wait(7.25);
+	stopMotor(leftMotor);
+	stopMotor(rightMotor);
+
+
+
 }
