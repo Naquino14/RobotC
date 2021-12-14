@@ -20,7 +20,7 @@ task main()
 	*/
 
 	//9) starting with motors
-	startMotor(rightMotor,64); 	//start motor at 1/2 speed
+	setMotor(rightMotor, 64);		//start motor at 1/2 speed
 	wait(5); 										//run motor for 5 seconds
 	stopMotor(rightMotor);			//stop motor
 }
