@@ -35,6 +35,7 @@ task main()
 	*/
 
 	//15)
+	/*
 	setMotor(rightMotor, 64);
 	wait(5);
 	stopMotor(rightMotor);
@@ -46,6 +47,25 @@ task main()
 	wait(7.25);
 	stopMotor(leftMotor);
 	stopMotor(rightMotor);
+	*/
+
+	/*
+	setServo(servoMotor, -127);		//turn on motor to -127
+	wait(2);											//wait for 2 seconds
+	setServo(servoMotor,0);				//cahnge servo to 127
+	wait(2);											// wait for 2 seconds
+	*/
+
+	setServo(servoMotor, -127);
+	wait(2);
+	setServo(servoMotor, -63);
+	wait(3);
+	setServo(servoMotor, 0);
+	wait(2);
+	setServo(servoMotor, 63);
+	wait(3);
+	setServo(servoMotor, 127);
+	wait(2);
 
 
 
