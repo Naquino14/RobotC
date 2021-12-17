@@ -26,30 +26,30 @@
 */
 
 task main()
-{                                     //Program begins, insert code within curly braces
+{
+	int lfThresh = (130 + 2800 ) / 2;
 	/*
-		untilPotentiometerLessThan(2048, potentiometer);
-		turnLEDOn(green);
-		untilPotentiometerGreaterThan(2048, potentiometer);
-		turnLEDOff(green);
-		startMotor(leftMotor, 64);
-		untilPotentiometerLessThan(2048, potentiometer);
-		stopMotor(leftMotor);
-		*/
+	while(true)
+		{
+			setServo(servoMotor, 127);
+			untilDark(lfThresh, lineFollower);
+			setServo(servoMotor, -127);
+			untilLight(lfThresh, lineFollower);
+		}*/
+	/*
+	startMotor(leftMotor, 63);
+	startMotor(rightMotor, 63);
+	untilSonarLessThan(20,sonar);
+	stopMotor(leftMotor);
+	stopMotor(rightMotor);
+	turnLEDOn(green);
+	wait(6.25);
+	turnLEDOff(green);*/
 
-/*
-	startMotor(leftMotor, 64);
-		startMotor(rightMotor, 64);
-		untilEncoderCounts(480, quad);
-		stopMotor(leftMotor);
-		stopMotor(rightMotor);*/
-
-		startMotor(leftMotor, 64);
-		startMotor(rightMotor, 64);
-		untilEncoderCounts(480, quad);
-		startMotor(leftMotor, -64);
-		startMotor(rightMotor, -64);
-		untilEncoderCounts(1280, quad);
-		stopMotor(leftMotor);
-		stopMotor(rightMotor);
+	untilSonarLessThan(20, sonar);
+	startMotor(leftMotor, 63);
+	startMotor(rightMotor, 63);
+	untilSonarGreaterThan(25, sonar);
+	stopMotor(leftMotor);
+	stopMotor(rightMotor);
 	}
