@@ -11,7 +11,7 @@
 #pragma config(Motor,  port3,           leftMotor,     tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port9,           servoMotor,    tmotorServoStandard, openLoop)
 
-/*
+
   Project Title:
   Team Members:
   Date:
