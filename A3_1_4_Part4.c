@@ -15,12 +15,14 @@
 task main()
 {
 
-	while(sensorVaalue[12] == 1)
-	{
-	untilDark(450, lightSensor);
-	turnFlashlightOn(flashLight, 127);
-	untilLight(450, lightSensor);
-	turnFlashlightOff(flashLight);
-}
+	while(true) { // loop indefinitely
+		while(sensorValue(bumpSwitch) == 1) // while the switch is pressed
+		{
+			untilDark(450, lightSensor); // hang until the light sensor sees darkness
+			turnFlashlightOn(flashLight, 127); // turn the flashlight on
+			untilLight(450, lightSensor); // hang until the flashlight sees light
+			turnFlashlightOff(flashLight); // turn the flashlight off
+		}
+	}
 
 }
