@@ -14,8 +14,17 @@
 
 task main()
 {
+	/*
 	clearTimer(T1);
 	while(time1[T1] < 20000)	//Loop program for 20 sec
+	{
+		turnLEDOn(green); // turn the led on
+		wait(2);					// wait for 2 secs
+		turnLEDOff(green);// turn the led off
+		wait(2);					// wait again for 2 secs
+	}*/
+
+	while(true)	//Loop program forever
 	{
 		turnLEDOn(green); // turn the led on
 		wait(2);					// wait for 2 secs
