@@ -16,17 +16,14 @@
 
 task main()
 {
-	for(int i = 0; i < 20; i++) // loop 20 times
+	for(int i = 0; i < 10; i++) // loop 20 times
 	{
 		// move and wait for the limit switch to be hit
 		// move half a second in the opposite direction
-
 		startMotor(leftMotor, 65);
 		untilBump(limitSwitch);
 		startMotor(leftMotor, -65);
 		wait(.5);
-
-
 	}
 	stopMotor(leftMotor);
 }
