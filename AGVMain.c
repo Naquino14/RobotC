@@ -80,17 +80,25 @@ void FollowLineTask()
 {
 	do
 	{
-		do // left line spotted
-			startMotor(rightMotor, 50);
-		while (SeeLine(leftLineSensor);
-
-		do // rightlLine spotted
-			startMotor(leftMotor, 50);
-		while (SeeLine(rightLineSensor);
-
-		waitInMilliseconds(10);
-		StartMotors(65);
-
+		if (SeeLine(rightLineSensor))
+		{
+			turnLEDOn(greenLED);
+			turnLEDOff(redLED);
+			startMotor(leftMotor, 80);
+			stopMotor(rightMotor);
+		} else if (SeeLine(leftLineSensor))
+		{
+			turnledon(redLED);
+			turnLEDOff(greenLED);
+			startMotor(rightMotor, 80);
+			stopMotor(leftMotor);
+		} else
+		{
+			waitInMilliseconds(10);
+		  StartMotors(65);
+		  turnLEDOff(greenLED);
+		  turnLEDOff(redLED);
+	}
 	} while (!TooClose(12));
 }
 
@@ -100,9 +108,11 @@ task main()
 	bool enabledFlag = true;
 	while(enabledFlag)
 	{
-		untilBump(button);
+		//untilBump(button);
 		//StartingTask();
 		FollowLineTask();
+		StartMotors(65);
+		//untilBump(button);
 	}
 
 
