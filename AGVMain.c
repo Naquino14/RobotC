@@ -23,7 +23,7 @@ bool SeeLine(short lineSensor)
 
 bool TooClose(float dist)
 {
-	if (SensorValue(sonar) < dist)
+	if (SensorValue(sonar) < dist || SensorValue(sonar) == -1)
 		return true;
 	else
 		return false;
@@ -63,7 +63,7 @@ void StartingTask()
 	StartMotors(127);
 	do
 		waitInMilliseconds(5);
-	while(!TooClose(12));
+	while(!TooClose(16));
 
 	StopMotors();
 	TurnAround(true, 127);
@@ -99,7 +99,8 @@ void FollowLineTask()
 		  turnLEDOff(greenLED);
 		  turnLEDOff(redLED);
 	}
-	} while (!TooClose(12));
+	} while (!TooClose(6));
+	StopMotors();
 }
 
 task main()
@@ -108,10 +109,10 @@ task main()
 	bool enabledFlag = true;
 	while(enabledFlag)
 	{
-		//untilBump(button);
-		//StartingTask();
+		untilBump(button);
+		StartingTask();
 		FollowLineTask();
-		StartMotors(65);
+
 		//untilBump(button);
 	}
 
