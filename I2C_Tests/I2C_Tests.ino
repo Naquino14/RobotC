@@ -65,7 +65,6 @@ void setup() {
 }
 
 void loop() {
-  servo.write(90);
   digitalWrite(IND_LED_PIN, HIGH);
   I2CRead(CDATA_ADDR, buf, 12);
 
