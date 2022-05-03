@@ -1,11 +1,12 @@
 #include <Wire.h>
 #include <Servo.h>
 
+#define TESTING
+
 #define I2C_ADDR 0x52
 
 #define MAIN_CTRL 0x00
-#define PWR_ON 0b0110
-// cant tell if this is working... fingers crossed
+#define PWR_ON 0b00000110
 
 #define LS_MEAS_RATE 0x04
 #define LS_RES_MSR 0b01000000
@@ -25,6 +26,7 @@
 #define IND_LED_PIN 12
 
 // record values of ball colors here...
+// plastic
 #define R_PL_MAX 0
 #define R_PL_MIN 0
 #define G_PL_MAX 0
@@ -32,6 +34,7 @@
 #define B_PL_MAX 0
 #define B_PL_MIN 0
 
+// wood
 #define R_W_MAX 0
 #define R_W_MIN 0
 #define G_W_MAX 0
@@ -49,7 +52,10 @@ void setup() {
   pinMode(IND_LED_PIN, OUTPUT);
   digitalWrite(IND_LED_PIN, HIGH);
   Wire.begin();
+  
+  #ifdef TESTING
   Serial.begin(115200);
+  #endif
 
   I2CWrite(MAIN_CTRL, PWR_ON);
   I2CWrite(LS_MEAS_RATE, LS_RES_MSR);
@@ -73,8 +79,10 @@ void loop() {
   r *= BAL_RED;
   g *= BAL_GREEN;
   b *= BAL_BLUE;
-  
+
+  #ifdef TESTING
   PrintVals(r, g, b, ir);
+  #endif
 
   // check values
   if (r > 200) // condition for wood here

@@ -4,6 +4,5 @@
 task main()
 {
 
-	i2cWriteRegister();
 
 }
