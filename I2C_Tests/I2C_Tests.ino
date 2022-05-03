@@ -24,6 +24,7 @@
 
 #define SERVO_PIN 11
 #define IND_LED_PIN 12
+#define RESET 10
 
 // record values of ball colors here...
 // plastic
@@ -88,8 +89,8 @@ void loop() {
     servo.write(0);
   else if (b > 200) // condition for plastic here
     servo.write(180);
-  else
-    servo.write(90);
+  //else
+    //servo.write(90);
 
   delay(25);
 }
