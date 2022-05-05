@@ -27,21 +27,21 @@
 #define RESET 10
 
 // record values of ball colors here...
-// plastic
-#define R_PL_MAX 0
-#define R_PL_MIN 0
-#define G_PL_MAX 0
-#define G_PL_MIN 0
-#define B_PL_MAX 0
-#define B_PL_MIN 0
-
 // wood
-#define R_W_MAX 0
-#define R_W_MIN 0
-#define G_W_MAX 0
-#define G_W_MIN 0
-#define B_W_MAX 0
-#define B_W_MIN 0
+#define R_W_MAX 221
+#define R_W_MIN 218
+#define G_W_MAX 15
+#define G_W_MIN 14
+#define B_W_MAX 219
+#define B_W_MIN 213
+
+// plastic
+#define R_PL_MAX 116
+#define R_PL_MIN 111
+#define G_PL_MAX 41
+#define G_PL_MIN 37
+#define B_PL_MAX 246
+#define B_PL_MIN 240
 
 uint8_t buf[9];
 
@@ -85,10 +85,10 @@ void loop() {
   #endif
 
   // check values
-  if (r > 200) // condition for wood here
-    servo.write(0);
-  else if (b > 200) // condition for plastic here
-    servo.write(180);
+  if (r <= 218) // condition for plastic here
+    { servo.write(0); PRI("fired"); }
+  else // condition for wood here
+    //servo.write(180);
   //else
     //servo.write(90);
 
