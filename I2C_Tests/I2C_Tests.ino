@@ -28,24 +28,33 @@
 
 // record values of ball colors here...
 // wood
-#define R_W_MAX 221
-#define R_W_MIN 218
-#define G_W_MAX 15
-#define G_W_MIN 14
-#define B_W_MAX 219
-#define B_W_MIN 213
+#define R_W_MAX 175
+#define R_W_MIN 124
+#define G_W_MAX 247
+#define G_W_MIN 200
+#define B_W_MAX 206
+#define B_W_MIN 188
+#define IR_W_MAX 188
+#define IR_W_MIN 204
 
 // plastic
-#define R_PL_MAX 116
-#define R_PL_MIN 111
-#define G_PL_MAX 41
-#define G_PL_MIN 37
-#define B_PL_MAX 246
-#define B_PL_MIN 240
+#define R_PL_MAX 183
+#define R_PL_MIN 163
+#define G_PL_MAX 110
+#define G_PL_MIN 92
+#define B_PL_MAX 161
+#define B_PL_MIN 139
+#define IR_PL_MAX 161
+#define IR_PL_MIN 139
+
+// note the most difference is between green
+
 
 uint8_t buf[9];
 
 uint16_t r = 0, g = 0, b = 0, ir = 0;
+
+int count = 0;
 
 Servo servo;
 
@@ -67,6 +76,7 @@ void setup() {
 
 void loop() {
   digitalWrite(IND_LED_PIN, HIGH);
+  
   I2CRead(CDATA_ADDR, buf, 12);
 
   // value assignment is based on the struture of the byte at 
@@ -81,17 +91,37 @@ void loop() {
   b *= BAL_BLUE;
 
   #ifdef TESTING
-  PrintVals(r, g, b, ir);
+  //PrintVals(r, g, b, ir);
   #endif
-
+  
   // check values
-  if (r <= 218) // condition for plastic here
-    { servo.write(0); PRI("fired"); }
-  else // condition for wood here
-    //servo.write(180);
-  //else
-    //servo.write(90);
+  // todo: counter
+  bool loopOk = count % 8 == 0;
 
+  if (loopOk)
+  {
+    Serial.print("IR: "); 
+    Serial.print(ir);
+    Serial.print(" ");
+  }
+  
+  if (ir > 50 && loopOk) // condition for plastic here
+  { 
+    Serial.println("fired plastic"); 
+    servo.write(45);
+  }
+  else if (!(ir < 10) && loopOk)// condition for wood here*/
+  { 
+    Serial.println("fired wood"); 
+    servo.write(180 - 45); 
+  }
+  else if (loopOk)
+  {
+    servo.write(90); 
+    Serial.println("fired none"); 
+  }
+
+  count++;
   delay(25);
 }
 
